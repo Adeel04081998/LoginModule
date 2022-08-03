@@ -7,8 +7,8 @@ export default ({ placeholder = 'Enter Name', primaryContainer = {}, secondaryCo
 
     return (
 
-        <View style={[styles.secondaryContainer]}>
-            <View style={[styles.imageContainer]}>
+        <View style={[styles.secondaryContainer,secondaryContainer]}>
+            <View style={[styles.imageContainer,imageContainer]}>
                 <Image
                     style={{
                         width: 40,
