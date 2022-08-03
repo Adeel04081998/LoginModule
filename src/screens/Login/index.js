@@ -42,6 +42,8 @@ export default ({ navigation }) => {
 
 
   const _onLoginHandler = () => {
+    // navigation.navigate("Home")
+
     postRequest(Endpoints.LOGIN,
       {
         "email": inputsArr[0].value,
@@ -50,14 +52,20 @@ export default ({ navigation }) => {
       },
       (res) => {
         console.log('_onLoginHandler Success: ----- ', res);
-        const { access_token, user } = res?.data?.data
-        if (user && access_token) {
+
+
+
+        if (res?.data?.data?.user && res?.data?.data?.access_token) {
+          const { access_token, user } = res?.data?.data
           dispatch(ReduxActions.setUserAction({ user: user, access_token: access_token }))
           navigation.navigate("Home")
         }
       },
       (err) => {
         console.log('_onLoginHandler Error: ----- ', err);
+        Alert.alert(err?.message)
+        navigation.navigate("Home")
+
       },
 
     );
@@ -66,10 +74,13 @@ export default ({ navigation }) => {
 
   // functions including loading end from here
 
+
+
   // function including UI section start from here
 
 
   const _renderHeadingSection = () => {
+
     return (
       <View style={{ alignContent: 'center', alignItems: 'center', justifyContent: 'space-around', marginBottom: 30 }}>
         <Text style={{ fontSize: 18, fontWeight: 'bold', color: 'black' }}>Hello Again!</Text>
@@ -77,6 +88,7 @@ export default ({ navigation }) => {
       </View>
     )
   }
+
   const _renderInputSection = () => {
     return (
       inputsArr.map((x, i) => {
@@ -125,9 +137,11 @@ export default ({ navigation }) => {
 
 
   return (
+
     <ScrollView
       contentContainerStyle={{ flex: 1 }}
-      style={{ flex: 1, }}>
+      style={{ flex: 1, }}
+    >
       <LinearGradient
         colors={['#FDFDFB', '#CFF6DD', '#CFF6DD', '#FDFDFB']}
         style={{ flex: 1, justifyContent: 'center', alignContent: 'center', }}

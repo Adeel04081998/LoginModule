@@ -8,13 +8,14 @@ export const postRequest = async (url, data, onSuccess = () => { }, onError = ()
 
     try {
         let res = await Axios.post(url, data, headers,);
+        // console.log("res=>", res);
         ///callback which retun on succes result
         onSuccess(res);
 
     } catch (error) {
         // console.log("[ApiManager].postRequest.error", error);
+        
         ///callback which retun  err result
-
         onError(error)
     } finally {
 

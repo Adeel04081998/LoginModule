@@ -31,6 +31,8 @@ export default ({ navigation }) => {
 
   const loadData = () => {
     getRequest(Endpoints.GET_HOME_RECORDS, (res) => {
+      console.log("res=>>>> ", res);
+
       const { data } = res
       if (data) {
         setDataList(data)
@@ -38,7 +40,7 @@ export default ({ navigation }) => {
 
     },
       (err) => {
-        console.log("errr=>>>> GET_CATEGORIES", err);
+        console.log("errr=>>>> list", err);
       })
   }
 
@@ -50,11 +52,11 @@ export default ({ navigation }) => {
 
 
   return (
-    <View style={{ flex: 1, }}>
+    <View style={{ flex: 1,paddingTop:40 }}>
 
       {/* Welcome message and logout button ui start here */}
 
-      <View style={{ justifyContent: 'space-between', marginVertical: 10, flexDirection: 'row' }}>
+      <View style={{ justifyContent: 'space-between',  flexDirection: 'row' }}>
         <Text style={{ fontSize: 17, fontWeight: 'bold', color: 'black' }}>Welcome To Home </Text>
         <TouchableOpacity style={{ width: 70, height: 50, backgroundColor: 'green', right: 20, borderRadius: 10, justifyContent: 'center', alignItems: 'center' }}
           onPress={() => { _onLogOutHandler() }}
