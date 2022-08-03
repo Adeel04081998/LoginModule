@@ -14,16 +14,23 @@ import TextBaseButton from '../../components/TextBaseButton';
 
 
 export default ({ navigation }) => {
+  // Defines const and state section start from here
 
   const dispatch = useDispatch();
+
   let initialState = {
     inputsArr: [
-      { id: 1, placeholder: 'Enter username', pattern: Regex.email, keyboardType: "default", value: "hassan.zafar@ropstam.com", maxLength: 15, isValid: true, showError: false, secureTextEntry: false },
-      { id: 2, placeholder: 'Password', pattern: Regex.password, keyboardType: "default", value: "12345678", maxLength: 15, isValid: true, showError: false, secureTextEntry: true },
+      { id: 1, placeholder: 'Enter username', pattern: Regex.email, value: "hassan.zafar@ropstam.com", errormessage: 'Please enter correct email  format', showError: false, secureTextEntry: false },
+      { id: 2, placeholder: 'Password', pattern: Regex.password, value: "12345678", errormessage: 'Please enter correct password format', showError: false, secureTextEntry: true },
     ],
   }
   const [state, setState] = useState(initialState)
   const { inputsArr } = state;
+
+  // Defines const and state section ends from here
+
+
+  // functions including start from here
 
 
   const _onChangeHandler = (value, index) => {
@@ -32,14 +39,7 @@ export default ({ navigation }) => {
     setState((pre) => ({ ...pre, inputsArr }))
   }
 
-  const _renderHeadingSection = () => {
-    return (
-      <View style={{ alignContent: 'center', alignItems: 'center', justifyContent: 'space-around', marginBottom: 30 }}>
-        <Text style={{ fontSize: 18, fontWeight: 'bold', color: 'black' }}>Hello Again!</Text>
-        <Text style={{ width: '30%', textAlign: 'center', marginVertical: 5, fontWeight: '700' }}  >Chance To get Your Life better</Text>
-      </View>
-    )
-  }
+
 
   const _onLoginHandler = () => {
     postRequest(Endpoints.LOGIN,
@@ -64,6 +64,19 @@ export default ({ navigation }) => {
 
   }
 
+  // functions including loading end from here
+
+  // function including UI section start from here
+
+
+  const _renderHeadingSection = () => {
+    return (
+      <View style={{ alignContent: 'center', alignItems: 'center', justifyContent: 'space-around', marginBottom: 30 }}>
+        <Text style={{ fontSize: 18, fontWeight: 'bold', color: 'black' }}>Hello Again!</Text>
+        <Text style={{ width: '30%', textAlign: 'center', marginVertical: 5, fontWeight: '700' }}  >Chance To get Your Life better</Text>
+      </View>
+    )
+  }
   const _renderInputSection = () => {
     return (
       inputsArr.map((x, i) => {
@@ -83,6 +96,7 @@ export default ({ navigation }) => {
               setState((pre) => ({ ...pre, inputsArr }))
             }}
             secureTextEntry={x.secureTextEntry}
+            errorMesssage={x.errormessage}
           />
         </View>
 
@@ -106,32 +120,59 @@ export default ({ navigation }) => {
       </View>
     )
   }
+
+  // function including UI section end from here
+
+
   return (
     <ScrollView
       contentContainerStyle={{ flex: 1 }}
-      style={{ flex: 1, }}  >
+      style={{ flex: 1, }}>
       <LinearGradient
         colors={['#FDFDFB', '#CFF6DD', '#CFF6DD', '#FDFDFB']}
         style={{ flex: 1, justifyContent: 'center', alignContent: 'center', }}
       >
+
+        {/* Render Heading section start here */}
+
         {_renderHeadingSection()}
+
+        {/* Render Heading section end here */}
+
+        {/* Render input section start here */}
 
         {_renderInputSection()}
 
+        {/* Render Heading section end here */}
+
+        {/* Render Recovery paswrd Buttton section start  here ,  */}
         <TextBaseButton
           textOne='Recovery Password'
           ContainerStyl={{ justifyContent: 'flex-end', marginHorizontal: 30, }}
           textOneStyle={{ fontSize: 16 }}
         />
 
+        {/* Render Recovery paswrd Buttton section ends here */}
+
+        {/* Render Login Buttton section start  here */}
+
         <Button
           onPress={() => { _onLoginHandler() }}
         />
+        {/* Render Login Buttton section ends  here */}
+
+
 
         <TextBaseButton
           textOne='or continue with'
         />
+
+        {/* Render social  section starts  here */}
+
+
         {_renderSocialSection()}
+
+        {/* Render social section ends  here */}
 
         <TextBaseButton
           textOne='Not a member?'
@@ -148,59 +189,3 @@ export default ({ navigation }) => {
   );
 };
 
-const styles = StyleSheet.create({
-  mainBody: {
-    flex: 1,
-    justifyContent: 'center',
-    backgroundColor: '#D3F9E4',
-    alignContent: 'center',
-  },
-  SectionStyle: {
-    flexDirection: 'row',
-    height: 40,
-    marginTop: 20,
-    marginLeft: 35,
-    marginRight: 35,
-    margin: 10,
-  },
-  buttonStyle: {
-    backgroundColor: '#7DE24E',
-    borderWidth: 0,
-    color: '#FFFFFF',
-    borderColor: '#7DE24E',
-    height: 40,
-    alignItems: 'center',
-    borderRadius: 30,
-    marginLeft: 35,
-    marginRight: 35,
-    marginTop: 20,
-    marginBottom: 25,
-  },
-  buttonTextStyle: {
-    color: '#FFFFFF',
-    paddingVertical: 10,
-    fontSize: 16,
-  },
-  inputStyle: {
-    flex: 1,
-    color: 'white',
-    paddingLeft: 15,
-    paddingRight: 15,
-    borderWidth: 1,
-    borderRadius: 30,
-    borderColor: '#dadae8',
-  },
-  registerTextStyle: {
-    color: '#FFFFFF',
-    textAlign: 'center',
-    fontWeight: 'bold',
-    fontSize: 14,
-    alignSelf: 'center',
-    padding: 10,
-  },
-  errorTextStyle: {
-    color: 'red',
-    textAlign: 'center',
-    fontSize: 14,
-  },
-});

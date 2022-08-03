@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { Alert, TouchableOpacity, StyleSheet, View, TextInput, Text } from 'react-native'
+import { StyleSheet, View, TextInput, Text } from 'react-native'
 
-export default ({  placeholder = 'Enter Name', value = '', onChangeText = () => { }, pattern = '', showError = false, isValid = () => { }, secureTextEntry = false }) => {
+export default ({  placeholder = 'Enter Name', value = '', onChangeText = () => { }, pattern = '', showError = false, isValid = () => { }, secureTextEntry = false, errorMesssage ='Please enter correct format' }) => {
     return (
         <View>
             <TextInput
@@ -21,10 +21,9 @@ export default ({  placeholder = 'Enter Name', value = '', onChangeText = () => 
                     }
                 }}
                 secureTextEntry={secureTextEntry}
-
             />
             {
-                showError ? <Text style={{ alignSelf: 'center', }}>Please Enter valid format</Text> : null
+                showError ? <Text style={{ alignSelf: 'center', }}> {errorMesssage}</Text> : null
 
             }
 
@@ -44,12 +43,10 @@ const styles = StyleSheet.create({
         borderRadius: 12,
         borderColor: '#dadae8',
         backgroundColor: "white",
-        // marginHorizontal: 40,
         width: '90%',
         paddingVertical: 15,
         justifyContent: 'center',
         alignSelf: 'center',
-        // textAlign:'center',
         paddingHorizontal: 15
 
 

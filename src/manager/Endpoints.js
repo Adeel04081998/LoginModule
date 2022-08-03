@@ -8,3 +8,4 @@ export default {
 
 
 
+// Endpoints of app are defined here in key valu pair

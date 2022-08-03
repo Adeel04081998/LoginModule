@@ -11,7 +11,6 @@ const AUTH_ROUTES = {
         screen_name: "Home",
         options: null, 
     }
-
 };
 
 const AUTH_STACKS = Object.keys(AUTH_ROUTES).map((key, index) => ({ id: `init-${index}-${key}`, screen_name: AUTH_ROUTES[key].screen_name, componenet: key }));

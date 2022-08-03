@@ -6,16 +6,19 @@ import ReduxActions from '../../redux/actions';
 import { useDispatch, } from 'react-redux';
 
 export default ({ navigation }) => {
-  const [dataList, setDataList] = useState()
 
   const dispatch = useDispatch();
+
+  const [dataList, setDataList] = useState()
+
+
+  // In this logout  function we clear our user session
 
   const _onLogOutHandler = () => {
     dispatch(ReduxActions.clearUserAction())
     navigation.navigate("Login")
-
   }
-
+  
   const renderItem = (item, index) => {
     return (
       <View style={[styles.item]} >
@@ -23,6 +26,9 @@ export default ({ navigation }) => {
       </View>
     );
   };
+
+  // In this function  get request is calling which giving record of list
+
   const loadData = () => {
     getRequest(Endpoints.GET_HOME_RECORDS, (res) => {
       const { data } = res
@@ -36,6 +42,8 @@ export default ({ navigation }) => {
       })
   }
 
+  // UseEffect is used which is renderd on screen load and loadData() component is called 
+
   useEffect(() => {
     loadData()
   }, []);
@@ -43,6 +51,9 @@ export default ({ navigation }) => {
 
   return (
     <View style={{ flex: 1, }}>
+
+      {/* Welcome message and logout button ui start here */}
+
       <View style={{ justifyContent: 'space-between', marginVertical: 10, flexDirection: 'row' }}>
         <Text style={{ fontSize: 17, fontWeight: 'bold', color: 'black' }}>Welcome To Home </Text>
         <TouchableOpacity style={{ width: 70, height: 50, backgroundColor: 'green', right: 20, borderRadius: 10, justifyContent: 'center', alignItems: 'center' }}
@@ -51,6 +62,9 @@ export default ({ navigation }) => {
           <Text  >Logout</Text>
         </TouchableOpacity>
       </View>
+      {/* Welcome message and logout button ui  ends here */}
+
+      {/* List of record are renderd with help of flatlist */}
       <FlatList
         data={dataList}
         keyExtractor={(item, index) => item.id}

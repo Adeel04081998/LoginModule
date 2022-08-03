@@ -1,14 +1,13 @@
 import React, { useEffect } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import ROUTES from './ROUTES';
 import Login from '../screens/Login/index';
 import Home from '../screens/Home';
-import { useDispatch, useSelector } from 'react-redux';
+import {  useSelector } from 'react-redux';
 
 const { AUTH_STACKS, INIT_ROUTES, AUTH_ROUTES } = ROUTES;
-
+//Screen Defines are Below
 const AuthComponents = {
     Login,
     Home
@@ -17,14 +16,15 @@ const AuthComponents = {
 const ContainerStack = createStackNavigator();
 const Stack = createNativeStackNavigator();
 
-
+//Stack options are Below
 
 const stackOpts = () => ({
     headerShown: false,
-    unmountOnBlur: true,
-    swipeEnabled: false,
-
 });
+
+
+ // Auth stacks is implemented here in which initial route is defined also
+
 const AuthStacks = (props) => {
     const userReducer = useSelector(state => state.userReducer)
     const { user } = userReducer
