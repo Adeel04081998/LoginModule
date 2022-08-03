@@ -4,11 +4,16 @@ import { Alert, TouchableOpacity, StyleSheet, View, TextInput, Text } from 'reac
 export default ({ onPress = () => { }, textOne = 'Login?', textSecond = '', ContainerStyl = {}, textOneStyle = {}, secondTextStyle = {} }) => {
     return (
         <View style={[styles.ContainerStyl, ContainerStyl]}>
-            <Text style={[styles.textOneStyle, textOneStyle]}>
+            <Text style={[styles.textOneStyle, textOneStyle]}
+                onPress={onPress}
+            >
                 {textOne}
             </Text>
 
-            {textSecond ? <Text style={[styles.secondTextStyle, secondTextStyle]}>
+            {textSecond ? <Text style={[styles.secondTextStyle, secondTextStyle]}
+                onPress={onPress}
+
+            >
                 {textSecond}
             </Text> : null}
         </View>
