@@ -1,7 +1,6 @@
 
 import TYPES from '../TYPES';
 
-
 const userReducer = (state = { }, action) => {
   switch (action.type) {
     case TYPES.SET_USER_ACTION:

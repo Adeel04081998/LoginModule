@@ -21,7 +21,7 @@ import { store, persistor } from './src/redux/store';
 const App = () => {
 
   return (
-    <SafeAreaView style={{ flex: 1, ...StyleSheet.absoluteFillObject }}  >
+    <SafeAreaView style={{ flex: 1, ...StyleSheet.absoluteFillObject }}>
       <StatusBar barStyle={'dark-content'} />
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>

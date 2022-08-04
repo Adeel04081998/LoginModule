@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Alert, TouchableOpacity, StyleSheet, View, TextInput, Text } from 'react-native'
+import {  TouchableOpacity, StyleSheet, Text } from 'react-native'
 
 export default ({ onPress = () => { }, text = 'Login', btnContainerStyl = {}, textStyle = {} }) => {
     return (
@@ -7,8 +7,7 @@ export default ({ onPress = () => { }, text = 'Login', btnContainerStyl = {}, te
             <TouchableOpacity
                 style={[styles.buttonStyle, btnContainerStyl]}
                 activeOpacity={0.5}
-                onPress={onPress}
-            >
+                onPress={onPress}>
                 <Text style={[styles.buttonTextStyle, textStyle]}>{text}</Text>
             </TouchableOpacity>
 
@@ -30,7 +29,6 @@ const styles = StyleSheet.create({
         marginHorizontal: 20,
         marginVertical: 30,
         paddingVertical: 8
-
     },
     buttonTextStyle: {
         color: '#FFFFFF',

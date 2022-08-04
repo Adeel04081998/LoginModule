@@ -1,32 +1,17 @@
 import React, { useState } from 'react'
-import { Alert, TouchableOpacity, StyleSheet, View, TextInput, Text, Dimensions, Image } from 'react-native'
-import { SocialLinksRecord } from '../utils/config/socialLinksData'
+import {  TouchableOpacity, StyleSheet, View, Image } from 'react-native'
 
 export default ({ onPress = () => { }, secondaryContainer = {}, imageContainer = {}, imageSource = '' }) => {
 
-
     return (
-
         <TouchableOpacity style={[styles.secondaryContainer, secondaryContainer]}
-            onPress={onPress}
-        >
+            onPress={onPress}>
             <View style={[styles.imageContainer, imageContainer]}>
-                <Image
-                    style={{
-                        width: 40,
-                        height: 40,
-                    }}
-                    // source={Images.google}
+                <Image style={{ width: 40, height: 40, }}
                     source={imageSource}
                 />
-
             </View>
-
         </TouchableOpacity>
-
-
-
-
     )
 }
 
@@ -36,13 +21,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         flexDirection: 'row',
         justifyContent: 'space-between'
-        // width:'100%'
     },
     secondaryContainer: {
-        // flexDirection: 'row',
-        // justifyContent: 'space-between',
         marginHorizontal: 15
-
     },
     imageContainer: {
         width: 60,
@@ -52,7 +33,6 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         justifyContent: 'center',
         alignItems: 'center',
-
     }
 
 });

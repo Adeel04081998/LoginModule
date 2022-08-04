@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { View, Text, Alert, StyleSheet, ScrollView, LogBox } from 'react-native'
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import Button from '../../components/Button';
 import SocialLinks from '../../components/SocialLinks';
 import TextInput from '../../components/TextInput';
@@ -11,7 +11,7 @@ import ReduxActions from '../../redux/actions';
 import LinearGradient from 'react-native-linear-gradient';
 import { SocialLinksRecord } from '../../utils/config/socialLinksData';
 import TextBaseButton from '../../components/TextBaseButton';
-
+import styles from './styles';
 
 export default ({ navigation }) => {
   // Defines const and state section start from here
@@ -32,17 +32,15 @@ export default ({ navigation }) => {
 
   // functions including start from here
 
-
   const _onChangeHandler = (value, index) => {
-    inputsArr[index].value = value;
 
+    inputsArr[index].value = value;
     setState((pre) => ({ ...pre, inputsArr }))
   }
 
 
 
   const _onLoginHandler = () => {
-    // navigation.navigate("Home")
 
     postRequest(Endpoints.LOGIN,
       {
@@ -51,19 +49,19 @@ export default ({ navigation }) => {
         "device_token": "zasdcvgtghnkiuhgfde345tewasdfghjkm"
       },
       (res) => {
-        console.log('_onLoginHandler Success: ----- ', res);
-
-
 
         if (res?.data?.data?.user && res?.data?.data?.access_token) {
           const { access_token, user } = res?.data?.data
           dispatch(ReduxActions.setUserAction({ user: user, access_token: access_token }))
           navigation.navigate("Home")
+          Alert.alert("SuccesFully Login")
         }
       },
       (err) => {
-        console.log('_onLoginHandler Error: ----- ', err);
         Alert.alert(err?.message)
+
+        ///This navigation is added because login api is not working when i am makeing a video so that way i add thiss in case of error to move to home screen to show homescreen part to you
+
         navigation.navigate("Home")
 
       },
@@ -82,9 +80,9 @@ export default ({ navigation }) => {
   const _renderHeadingSection = () => {
 
     return (
-      <View style={{ alignContent: 'center', alignItems: 'center', justifyContent: 'space-around', marginBottom: 30 }}>
-        <Text style={{ fontSize: 18, fontWeight: 'bold', color: 'black' }}>Hello Again!</Text>
-        <Text style={{ width: '30%', textAlign: 'center', marginVertical: 5, fontWeight: '700' }}  >Chance To get Your Life better</Text>
+      <View style={styles.renderHeadingSectionPrimaryContnerStyl}>
+        <Text style={styles.renderHeaderPrimaryTextstyl}>Hello Again!</Text>
+        <Text style={styles.renderHeaderSecondaryTextstyl}  >Chance To get Your Life better</Text>
       </View>
     )
   }
@@ -92,9 +90,7 @@ export default ({ navigation }) => {
   const _renderInputSection = () => {
     return (
       inputsArr.map((x, i) => {
-        return <View style={{ marginVertical: 10 }}
-          key={`${i}`}
-        >
+        return <View style={styles.textinputParentContainerStyl} key={`${i}`}>
           <TextInput
             value={x.value}
             placeholder={x.placeholder}
@@ -119,7 +115,7 @@ export default ({ navigation }) => {
   }
   const _renderSocialSection = () => {
     return (
-      <View style={{ flexDirection: 'row', justifyContent: 'center', marginVertical: 20 }}>
+      <View style={styles.socialLinkMainContainerStyl}>
         {
           SocialLinksRecord.map((x, i) => {
             return <SocialLinks
@@ -144,7 +140,7 @@ export default ({ navigation }) => {
     >
       <LinearGradient
         colors={['#FDFDFB', '#CFF6DD', '#CFF6DD', '#FDFDFB']}
-        style={{ flex: 1, justifyContent: 'center', alignContent: 'center', }}
+        style={styles.linearGradientStyl}
       >
 
         {/* Render Heading section start here */}

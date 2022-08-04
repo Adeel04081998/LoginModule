@@ -37,7 +37,6 @@ const styles = StyleSheet.create({
 
 
     inputStyle: {
-
         color: 'black',
         borderWidth: 0.5,
         borderRadius: 12,
@@ -48,10 +47,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignSelf: 'center',
         paddingHorizontal: 15
-
-
-
-
     },
 
 });

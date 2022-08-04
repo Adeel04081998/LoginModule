@@ -7,14 +7,12 @@ const setUserAction = (payload = {}) => {
     }
 }
 
-
 const clearUserAction = (payload = {}) => {
     return {
         type: TYPES.CLEAR_USER_ACTION,
         payload,
     }
 }
-
 
 export default {
     setUserAction,
